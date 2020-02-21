@@ -131,6 +131,9 @@ public class VentanaPokedex extends javax.swing.JFrame {
         nombrePokemon = new javax.swing.JLabel();
         izq = new javax.swing.JButton();
         der = new javax.swing.JButton();
+        chiny = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,39 +150,50 @@ public class VentanaPokedex extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 330, 330));
-        getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 229, 42));
+        getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 330, 330));
+        getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 170, 30));
 
         izq.setOpaque(false);
         izq.setContentAreaFilled(false);
-        izq.setText("<--");
         izq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 izqActionPerformed(evt);
             }
         });
-        getContentPane().add(izq, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 30, 30));
+        getContentPane().add(izq, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 30, 30));
 
         der.setOpaque(false);
         der.setContentAreaFilled(false);
-        der.setText("-->");
         der.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 derActionPerformed(evt);
             }
         });
-        getContentPane().add(der, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 30, 30));
+        getContentPane().add(der, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, 30, 30));
+
+        chiny.setOpaque(false);
+        chiny.setContentAreaFilled(false);
+        chiny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chinyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chiny, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 40, 40));
+
+        jScrollPane1.setViewportView(jTextPane1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 512, 190, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("D:\\CarlosLizanaGonzalez\\programacion\\tyghf.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -10, 420, 640));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void izqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_izqActionPerformed
         dibujaElPokemonQueEstaEnLaPosicion(contador);
-        Pokemon p = listaPokemons.get(String.valueOf(contador+1));
+        Pokemon p = listaPokemons.get(String.valueOf(contador));
         if (p != null){
             nombrePokemon.setText(p.nombre);
         }
@@ -207,6 +221,22 @@ public class VentanaPokedex extends javax.swing.JFrame {
             contador = 649;
         }
     }//GEN-LAST:event_derActionPerformed
+
+    private void chinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chinyActionPerformed
+        if (chiny.isSelected()) {
+            try {
+                imagen1 = ImageIO.read(getClass().getResource("/imagenes/Shinys.png"));
+                dibujaElPokemonQueEstaEnLaPosicion(contador);
+            } catch (IOException ex) {
+            }
+        } else {
+            try {
+                imagen1 = ImageIO.read(getClass().getResource("/imagenes/black-white.png"));
+                dibujaElPokemonQueEstaEnLaPosicion(contador);
+            } catch (IOException ex) {
+            }
+        }
+    }//GEN-LAST:event_chinyActionPerformed
     
     /**
      * @param args the command line arguments
@@ -264,10 +294,13 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton chiny;
     private javax.swing.JButton der;
     private javax.swing.JPanel imagenPokemon;
     private javax.swing.JButton izq;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel nombrePokemon;
     // End of variables declaration//GEN-END:variables
 }
